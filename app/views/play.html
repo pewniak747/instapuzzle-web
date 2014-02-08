@@ -1,12 +1,21 @@
-<h1>instapuzzle</h1>
-<p>Popular instagram photos.</p>
-<p>Turned into puzzles.</p>
-<p>With multiplayer.</p>
-<form>
-  <div class="input-group">
-    <input class="form-control" name="nickname" type="text" placeholder="Introduce yourself, please" />
-    <span class="input-group-btn">
-      <button class="btn btn-primary" type="button">start</button>
-    </span>
+<div ng-controller="PlayCtrl">
+  <div ng-switch on="state">
+    <div ng-switch-when="logged-out">
+      <h1>instapuzzle</h1>
+      <p>Popular instagram photos.</p>
+      <p>Turned into puzzles.</p>
+      <p>With multiplayer.</p>
+      <form ng-submit="changeNickname()">
+        <div class="input-group">
+          <input class="form-control" type="text" ng-model="nickname" placeholder="Introduce yourself, please" />
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">start</button>
+          </span>
+        </div>
+      </form>
+    </div>
+    <div ng-switch-when="logged-in">
+      <p>board placeholder</p>
+    </div>
   </div>
-</form>
+</div>
