@@ -16,5 +16,22 @@ describe 'Controller: MainCtrl', ->
     )
   )
 
-  it 'should attach a list of awesomeThings to the scope', ->
-    expect(scope.awesomeThings.length).toBe(3)
+  it 'sets currentTab to play by default', ->
+    expect(scope.currentTab).toBe('play')
+
+  describe 'switchTab', ->
+
+    it 'sets currentTab to about', ->
+      scope.switchTab('about')
+      expect(scope.currentTab).toBe('about')
+
+  describe 'isCurrentTab', ->
+
+    beforeEach ->
+      scope.currentTab = 'play'
+
+    it 'is true if is current tab', ->
+      expect(scope.isCurrentTab('play')).toBe(true)
+
+    it 'is false if is not current tab', ->
+      expect(scope.isCurrentTab('about')).toBe(false)

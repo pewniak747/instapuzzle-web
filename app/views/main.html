@@ -1,25 +1,12 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Play</a></li>
-    <li><a ng-href="#">About</a></li>
+    <li ng-class="{active: isCurrentTab('play')}"><a href="" ng-click="switchTab('play')">Play</a></li>
+    <li ng-class="{active: isCurrentTab('about')}"><a href="" ng-click="switchTab('about')">About</a></li>
   </ul>
   <h3 class="text-muted">instapuzzle</h3>
 </div>
 
-<div class="jumbotron">
-  <h1>instapuzzle</h1>
-  <p>Popular instagram photos.</p>
-  <p>Turned into puzzles.</p>
-  <p>With multiplayer.</p>
-  <form>
-    <div class="input-group">
-      <input class="form-control" name="nickname" type="text" placeholder="Introduce yourself, please" />
-      <span class="input-group-btn">
-        <button class="btn btn-primary" type="button">start</button>
-      </span>
-    </div>
-  </form>
-</div>
+<div class="jumbotron" ng-include="'views/' + currentTab + '.html'"></div>
 
 <div class="footer">
   <p>&copy; 2014 by <a href="https://github.com/pewniak747" target="blank">Tomasz Pewinski</a></p>
