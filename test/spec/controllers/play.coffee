@@ -3,16 +3,17 @@
 describe 'Controller: PlayCtrl', ->
 
   # load the controller's module
-  beforeEach module 'instapuzzleWebApp'
+  beforeEach module('instapuzzleWebApp')
 
   PlayCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope) ->
+  beforeEach inject ($controller, $rootScope, storage) ->
     scope = $rootScope.$new()
     PlayCtrl = $controller 'PlayCtrl', {
       $scope: scope
+      storage: storage
     }
 
   it 'has default state of logged-out', ->
@@ -30,3 +31,9 @@ describe 'Controller: PlayCtrl', ->
       scope.changeNickname()
       expect(scope.state).toBe('logged-out')
 
+  describe 'resetNickname', ->
+
+    it 'changes nickname to undefined', ->
+      scope.nickname = 'bob'
+      scope.resetNickname()
+      expect(scope.nickname).toBe(undefined)

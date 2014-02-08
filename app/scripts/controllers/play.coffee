@@ -1,9 +1,19 @@
 'use strict'
 
 angular.module('instapuzzleWebApp')
-  .controller 'PlayCtrl', ($scope) ->
-    $scope.state = 'logged-out'
+  .controller 'PlayCtrl', ($scope, storage) ->
 
     $scope.changeNickname = ->
       if @nickname?.length
         $scope.state = 'logged-in'
+        storage.set('nickname', @nickname)
+      else
+        $scope.state = 'logged-out'
+        storage.remove('nickname')
+
+    $scope.resetNickname = ->
+      $scope.nickname = undefined
+      $scope.changeNickname()
+
+    $scope.nickname = storage.get('nickname')
+    $scope.changeNickname()

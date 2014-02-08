@@ -4,7 +4,8 @@ angular.module('instapuzzleWebApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'angularLocalStorage'
 ])
   .config ($routeProvider) ->
     $routeProvider.when('/', {
