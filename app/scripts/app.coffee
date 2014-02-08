@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 angular.module('instapuzzleWebApp', [
   'ngCookies',
@@ -6,13 +6,11 @@ angular.module('instapuzzleWebApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config ($routeProvider) ->
+    $routeProvider.when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .otherwise({
         redirectTo: '/'
-      });
-  });
+      })
