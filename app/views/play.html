@@ -15,7 +15,7 @@
       </form>
     </div>
     <div ng-switch-when="logged-in">
-      <button class="btn btn-default" ng-mouseover="logoutBtnState = 'in'" ng-mouseout="logoutBtnState = null" ng-switch on="logoutBtnState" ng-click="resetNickname()">
+      <button class="play__logout btn btn-default" ng-mouseenter="logoutBtnState = 'in'" ng-mouseleave="logoutBtnState = null" ng-switch on="logoutBtnState" ng-click="resetNickname()">
         <span ng-switch-when="in">log out</span>
         <span ng-switch-default>you're {{ nickname }}</span>
       </button>
