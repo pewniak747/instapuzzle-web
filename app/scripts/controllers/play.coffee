@@ -5,6 +5,7 @@ angular.module('instapuzzleWebApp')
 
     $scope.changeNickname = ->
       if @nickname?.length
+        $scope.nickname = @nickname
         $scope.state = 'logged-in'
         storage.set('nickname', @nickname)
       else
