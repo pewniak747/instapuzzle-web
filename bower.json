@@ -14,7 +14,8 @@
     "angularLocalStorage": "~0.1.7",
     "underscore": "~1.6.0",
     "angular-socket-io": "~0.3.0",
-    "socket.io-client": "~0.9.16"
+    "socket.io-client": "~0.9.16",
+    "bourbon": "~3.1.8"
   },
   "devDependencies": {
     "angular-mocks": "1.2.11",

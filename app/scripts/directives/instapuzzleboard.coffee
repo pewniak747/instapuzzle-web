@@ -8,6 +8,9 @@ angular.module('instapuzzleWebApp')
       element.css('height': element.width())
     scope:
       board: '=instapuzzleBoardModel'
+    controller: ($scope) ->
+      $scope.pieceSelected = (index) ->
+        $scope.$emit('piece:selected', index)
     templateUrl: 'views/board.html'
     link: link
 
@@ -39,6 +42,10 @@ angular.module('instapuzzleWebApp')
         element.animate
           left: "#{positionX(position[0])}%"
           top: "#{positionY(position[1])}%"
+        , -> element.removeClass('is-selected')
+
+      element.on 'click', ->
+        element.toggleClass('is-selected')
 
     scope:
       piece: '=instapuzzleBoardPiece'

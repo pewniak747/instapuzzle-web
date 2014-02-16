@@ -1,3 +1,5 @@
+@import 'compass';
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -83,4 +85,9 @@ body {
   box-shadow: 0 0 1px #ddd;
   float: left;
   position: relative;
+  &.is-selected {
+    @include transform(scale(1.2));
+    box-shadow: 0 0 10px black;
+    z-index: 10;
+  }
 }
