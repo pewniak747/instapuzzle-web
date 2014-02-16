@@ -20,6 +20,7 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angularLocalStorage/src/angularLocalStorage.js',
+      'app/bower_components/angular-socket-io/socket.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
       'app/views/*.html',
