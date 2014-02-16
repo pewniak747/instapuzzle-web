@@ -5,7 +5,8 @@ angular.module('instapuzzleWebApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'angularLocalStorage'
+  'angularLocalStorage',
+  'btford.socket-io'
 ])
   .config ($routeProvider) ->
     $routeProvider.when('/', {
@@ -15,3 +16,6 @@ angular.module('instapuzzleWebApp', [
       .otherwise({
         redirectTo: '/'
       })
+  .factory 'socket', (socketFactory) ->
+    socketIO = io.connect('/some/path')
+    socketFactory(ioSocket: socketIO)
