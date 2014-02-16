@@ -11,6 +11,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'app/bower_components/jquery/jquery.js',
+      'app/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
@@ -20,9 +22,19 @@ module.exports = function(config) {
       'app/bower_components/angularLocalStorage/src/angularLocalStorage.js',
       'app/scripts/*.coffee',
       'app/scripts/**/*.coffee',
+      'app/views/*.html',
       'test/mock/**/*.coffee',
       'test/spec/**/*.coffee'
     ],
+
+    preprocessors: {
+      '**/*.coffee': 'coffee',
+      'app/views/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/'
+    },
 
     // list of files / patterns to exclude
     exclude: [],

@@ -19,7 +19,9 @@
         <span ng-switch-when="in">log out</span>
         <span ng-switch-default>you're {{ nickname }}</span>
       </button>
-      <h1>there's a board</h1>
+      <div ng-controller="BoardCtrl">
+        <div instapuzzle-board instapuzzle-board-model="board"></div>
+      </div>
     </div>
   </div>
 </div>
