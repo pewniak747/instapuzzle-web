@@ -1,5 +1,1 @@
-<h2>this is a board</h2>
-<ul>
-  <li>width: {{ board.width }}</li>
-  <li>height: {{ board.height }}</li>
-  <li>image: <a href="{{ board.imageUrl }}">{{ board.imageURL }}</a></li>
+<div instapuzzle-piece instapuzzle-board-model="board" instapuzzle-board-piece="piece" ng-repeat="piece in board.pieces" class="board__piece js-piece"></div>

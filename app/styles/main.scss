@@ -78,3 +78,8 @@ body {
 .board {
   width: 100%;
 }
+
+.board__piece {
+  box-shadow: 0 0 1px #ddd;
+  float: left;
+}
