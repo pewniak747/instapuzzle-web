@@ -17,5 +17,5 @@ angular.module('instapuzzleWebApp', [
         redirectTo: '/'
       })
   .factory 'socket', (socketFactory) ->
-    socketIO = io.connect('/some/path')
+    socketIO = io.connect('ws://localhost:9001')
     socketFactory(ioSocket: socketIO)

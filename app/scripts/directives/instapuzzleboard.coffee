@@ -44,8 +44,8 @@ angular.module('instapuzzleWebApp')
           top: "#{positionY(position[1])}%"
         , -> element.removeClass('is-selected')
 
-      element.on 'click', ->
-        element.toggleClass('is-selected')
+      scope.$watch 'piece.selected', (value) ->
+        element.toggleClass('is-selected', !!value)
 
     scope:
       piece: '=instapuzzleBoardPiece'
