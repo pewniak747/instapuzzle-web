@@ -9,11 +9,12 @@ describe 'Controller: PlayCtrl', ->
   scope = {}
 
   # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope, storage) ->
+  beforeEach inject ($controller, $rootScope, storage, socket) ->
     scope = $rootScope.$new()
     PlayCtrl = $controller 'PlayCtrl', {
       $scope: scope
       storage: storage
+      socket: socket
     }
 
   it 'has default state of logged-out', ->
