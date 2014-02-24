@@ -21,7 +21,7 @@ angular.module('instapuzzleWebApp')
 
     players = {}
 
-    socket.forward(['player:joined', 'player:left', 'player:sync'], $scope)
+    socket.forward(['player:joined', 'player:left', 'player:synced'], $scope)
 
     $scope.$on 'socket:player:joined', (event, data) ->
       players[data.id] =
@@ -30,11 +30,12 @@ angular.module('instapuzzleWebApp')
     $scope.$on 'socket:player:left', (event, data) ->
       delete players[data.id]
 
-    $scope.$on 'socket:player:sync', (event, data) ->
+    $scope.$on 'socket:player:synced', (event, data) ->
       players = {}
       _.each data, (attributes) ->
         players[attributes.id] =
           name: attributes.name
+      $scope.players = players
 
     $scope.playersCount = ->
       _.size(players)
@@ -42,3 +43,4 @@ angular.module('instapuzzleWebApp')
     $scope.players = players
 
     socket.emit('player:join')
+    socket.emit('player:sync')
