@@ -18,11 +18,11 @@ angular.module('instapuzzleWebApp')
     link = (scope, element, attrs) ->
       board = scope.board
       piece = scope.piece
-      index = piece.index
       width = 100.0 / board.width
       height = 100.0 / board.height
-      x = index % board.width
-      y = Math.floor(index / board.height)
+      backgroundPositions = piece.id.split(":")[0...2]
+      x = parseInt(backgroundPositions[0], 10)
+      y = parseInt(backgroundPositions[1], 10)
       backgroundPosX = (100.0 / (board.width - 1)) * x
       backgroundPosY = (100.0 / (board.height - 1)) * y
       element.css
@@ -33,9 +33,11 @@ angular.module('instapuzzleWebApp')
         'background-size': "#{board.width * 100}% #{board.height * 100}%"
 
       positionX = (pieceX)->
+        x = piece.index % board.width
         (100.0 / board.width) * (pieceX - x)
 
       positionY = (pieceY)->
+        y = Math.floor(piece.index / board.height)
         (100.0 / board.height) * (pieceY - y)
 
       scope.$watchCollection '[piece.x, piece.y]', (position) ->
