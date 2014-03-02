@@ -49,7 +49,7 @@ angular.module('instapuzzleWebApp')
       scope.$watch 'piece.holder', (value) ->
         element.toggleClass('is-selected', !!value)
         if value?.name
-          element.find('.js-holder').css('border-color', scope.stringToColor(value.name))
+          element.find('.js-holder').css('border-right-color', scope.stringToColor(value.name))
 
       scope.stringToColor = (str) ->
         i = 0
