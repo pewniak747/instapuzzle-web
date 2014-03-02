@@ -86,3 +86,29 @@ body {
     z-index: 10;
   }
 }
+
+.board__piece-holder {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-right: 30px solid #428bca;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: none;
+  .is-selected & {
+    display: inline-block;
+  }
+  span {
+    font-size: 10px;
+    width: 200px;
+    display: inline-block;
+    text-align: right;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    line-height: 30px;
+    padding-right: 10px;
+    color: #fff;
+  }
+}

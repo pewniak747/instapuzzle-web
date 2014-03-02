@@ -24,7 +24,8 @@ angular.module('instapuzzleWebApp')
 
     $scope.$on 'socket:piece:picked', (event, args) ->
       piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
-      piece?.selected = true
+      holder = $scope.players[args.player_id] || {}
+      piece?.holder = holder
 
     $scope.$on 'socket:board:synced', (event, args) ->
       $scope.board.imageURL = args.imageURL
@@ -38,6 +39,6 @@ angular.module('instapuzzleWebApp')
       piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
       piece?.x = args.position.x
       piece?.y = args.position.y
-      piece?.selected = false
+      piece?.holder = null
 
     socket.emit('board:sync')
