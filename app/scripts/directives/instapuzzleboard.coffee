@@ -48,6 +48,19 @@ angular.module('instapuzzleWebApp')
 
       scope.$watch 'piece.holder', (value) ->
         element.toggleClass('is-selected', !!value)
+        if value?.name
+          element.find('.js-holder').css('border-color', scope.stringToColor(value.name))
+
+      scope.stringToColor = (str) ->
+        i = 0
+        hash = 0
+        while i < str.length
+          hash = str.charCodeAt(i++) + ((hash << 5) - hash)
+        i = 0
+        colour = "#"
+        while i < 3
+          colour += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2)
+        colour
 
     scope:
       piece: '=instapuzzleBoardPiece'
