@@ -3,55 +3,41 @@
 angular.module('instapuzzleWebApp')
   .controller 'BoardCtrl', ($scope, socket) ->
     board =
-      imageURL: 'http://distilleryimage6.ak.instagram.com/6191e200971711e3bad01215527ad906_8.jpg'
-      width: 5
-      height: 5
+      imageURL: ''
+      width: 0
+      height: 0
       pieces: []
 
-    width = board.width
-    height = board.height
-    widths = _.range(0, width)
-    heights = _.range(0, height)
-    positions = _(heights).chain().map (y) ->
-      _.map widths, (x)-> [x, y]
-    .flatten(1).value()
+    $scope.selectedId = null
 
-    board.pieces = _.map positions, (position, index) -> { x: position[0], y: position[1], index: index }
-
-    $scope.selectedIndex = null
-
-    $scope.pieceSelected = (index) ->
-      if $scope.selectedIndex == null
-        $scope.selectedIndex = index
-        board.pieces[index].selected = true
-      else if $scope.selectedIndex == index
-        $scope.selectedIndex = null
-        board.pieces[index].selected = false
+    $scope.$on 'piece:selected', (event, args) ->
+      if $scope.selectedId == null
+        socket.emit('piece:pickup', args.id)
+        $scope.selectedId = args.id
       else
-        selectedPiece = board.pieces[$scope.selectedIndex]
-        newPiece = board.pieces[index]
-        tmpX = selectedPiece.x
-        tmpY = selectedPiece.y
-        selectedPiece.x = newPiece.x
-        selectedPiece.y = newPiece.y
-        board.pieces[index].selected = false
-        newPiece.x = tmpX
-        newPiece.y = tmpY
-        $scope.selectedIndex = null
-
-    $scope.$on 'piece:selected', (event, index) ->
-      socket.emit('piece:pickup', piece_id: index)
+        socket.emit('piece:move', id: $scope.selectedId, x: args.x, y: args.y)
+        $scope.selectedId = null
 
     $scope.board = board
 
-    #setTimeout ->
-      #positions = _.shuffle(positions)
-      #_.each $scope.board.pieces, (piece, index)->
-        #piece.x = positions[index][0]
-        #piece.y = positions[index][1]
-      #$scope.$apply()
-    #, 3000
+    socket.forward(['piece:picked', 'piece:moved', 'board:synced'], $scope)
 
-    socket.forward(['piece:pickup'], $scope)
-    $scope.$on 'socket:piece:pickup', (event, args)->
-      $scope.pieceSelected(args.piece_id)
+    $scope.$on 'socket:piece:picked', (event, args) ->
+      piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
+      piece?.selected = true
+
+    $scope.$on 'socket:board:synced', (event, args) ->
+      $scope.board.imageURL = args.imageURL
+      $scope.board.width = args.width
+      $scope.board.height = args.height
+      $scope.board.pieces = _.map args.pieces, (piece, index) ->
+        piece.index = index
+        piece
+
+    $scope.$on 'socket:piece:moved', (event, args) ->
+      piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
+      piece?.x = args.position.x
+      piece?.y = args.position.y
+      piece?.selected = false
+
+    socket.emit('board:sync')

@@ -9,8 +9,8 @@ angular.module('instapuzzleWebApp')
     scope:
       board: '=instapuzzleBoardModel'
     controller: ($scope) ->
-      $scope.pieceSelected = (index) ->
-        $scope.$emit('piece:selected', index)
+      $scope.pieceSelected = (index, piece) ->
+        $scope.$emit('piece:selected', piece)
     templateUrl: 'views/board.html'
     link: link
 
