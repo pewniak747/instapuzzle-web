@@ -17,5 +17,9 @@ angular.module('instapuzzleWebApp', [
         redirectTo: '/'
       })
   .factory 'socket', (socketFactory) ->
-    socketIO = io.connect('ws://localhost:9001')
+    socketHost = if window.location.host.match('localhost')
+      "localhost:9001"
+    else
+      "murmuring-dusk-5737.herokuapp.com"
+    socketIO = io.connect("ws://#{socketHost}")
     socketFactory(ioSocket: socketIO)
