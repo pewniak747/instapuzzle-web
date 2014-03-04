@@ -25,11 +25,13 @@ angular.module('instapuzzleWebApp')
 
     $scope.$on 'socket:player:login', (event, data) ->
       $scope.currentPlayerId = data.id
+      $scope.state = 'logged-in'
 
     $scope.playersCount = ->
       _.size(players)
 
     $scope.players = players
+    $scope.state = 'logged-out'
 
     socket.emit('player:join')
     socket.emit('player:sync')

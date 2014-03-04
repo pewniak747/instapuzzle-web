@@ -76,6 +76,10 @@ body {
   width: 100%;
 }
 
+.board__wrapper {
+  height: 580px;
+}
+
 .board__piece {
   box-shadow: 0 0 1px #ddd;
   float: left;
@@ -110,5 +114,17 @@ body {
     line-height: 30px;
     padding-right: 10px;
     color: #fff;
+  }
+}
+
+.board__loading {
+  background-color: white;
+  position: relative;
+  top: -580px;
+  height: 580px;
+  opacity: 0.8;
+  p {
+    position: relative;
+    top: 280px;
   }
 }

@@ -1,7 +1,10 @@
 <div ng-controller="PlayCtrl">
   <p>{{ playersCount() }} players online</p>
   <br />
-  <div ng-controller="BoardCtrl">
+  <div ng-controller="BoardCtrl" class="board__wrapper">
     <div instapuzzle-board instapuzzle-board-model="board"></div>
+    <div class="board__loading" ng-show="state == 'logged-out'">
+      <p>loading game...</p>
+    </div>
   </div>
 </div>
