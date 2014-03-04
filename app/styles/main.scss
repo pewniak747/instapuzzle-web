@@ -53,7 +53,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 730px;
+      max-width: 800px;
     }
 
     /* Remove the padding we set earlier */
@@ -74,10 +74,13 @@ body {
 
 .board {
   width: 100%;
+  max-width: 600px;
 }
 
 .board__wrapper {
-  height: 580px;
+  height: 600px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .board__piece {
@@ -120,8 +123,8 @@ body {
 .board__loading {
   background-color: white;
   position: relative;
-  top: -580px;
-  height: 580px;
+  top: -600px;
+  height: 600px;
   opacity: 0.8;
   p {
     position: relative;
