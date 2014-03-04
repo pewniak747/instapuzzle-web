@@ -1,3 +1,3 @@
-<div instapuzzle-piece instapuzzle-board-model="board" instapuzzle-board-piece="piece" ng-repeat="piece in board.pieces" class="board__piece js-piece" ng-click="pieceSelected($index, piece)">
+<div instapuzzle-piece ng-repeat="piece in board.pieces" class="board__piece js-piece" ng-click="pieceSelected($index, piece)">
   <div class="board__piece-holder js-holder"><span>{{piece.holder.name}}</span></div>
 </div>

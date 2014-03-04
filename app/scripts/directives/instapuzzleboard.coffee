@@ -6,8 +6,6 @@ angular.module('instapuzzleWebApp')
       board = scope.board
       element.addClass('board')
       element.css('height': element.width())
-    scope:
-      board: '=instapuzzleBoardModel'
     controller: ($scope) ->
       $scope.pieceSelected = (index, piece) ->
         $scope.$emit('piece:selected', piece)
@@ -46,10 +44,12 @@ angular.module('instapuzzleWebApp')
           top: "#{positionY(position[1])}%"
         , -> element.removeClass('is-selected')
 
-      scope.$watch 'piece.holder', (value) ->
-        element.toggleClass('is-selected', !!value)
-        if value?.name
-          element.find('.js-holder').css('border-right-color', scope.stringToColor(value.name))
+      scope.$watchCollection '[piece.holder, currentPlayerId]', (value) ->
+        holder = value[0]
+        currentId = value[1]
+        element.toggleClass('is-selected', !!holder)
+        showBadge = holder? && holder.id != currentId
+        element.find('.js-holder').toggle(showBadge).css('border-right-color', scope.stringToColor(holder?.name || ""))
 
       scope.stringToColor = (str) ->
         i = 0
@@ -62,7 +62,4 @@ angular.module('instapuzzleWebApp')
           colour += ("00" + ((hash >> i++ * 8) & 0xFF).toString(16)).slice(-2)
         colour
 
-    scope:
-      piece: '=instapuzzleBoardPiece'
-      board: '=instapuzzleBoardModel'
     link: link
