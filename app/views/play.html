@@ -2,6 +2,7 @@
   <div class="play__state" ng-switch="boardState">
     <div ng-switch-when="not-finished">
       <p>{{ playersCount() }} players online</p>
+      <span>source: <a href="{{ board.imageURL }}" target="_blank">{{ board.imageURL }}</a></span>
     </div>
     <div ng-switch-when="finished">
       <p>puzzle solved, good job!</p>

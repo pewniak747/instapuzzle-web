@@ -2,12 +2,6 @@
 
 angular.module('instapuzzleWebApp')
   .controller 'BoardCtrl', ($scope, socket) ->
-    board =
-      imageURL: ''
-      width: 0
-      height: 0
-      pieces: []
-
     $scope.selectedId = null
 
     $scope.$on 'piece:selected', (event, args) ->
@@ -17,8 +11,6 @@ angular.module('instapuzzleWebApp')
       else
         socket.emit('piece:move', id: $scope.selectedId, x: args.x, y: args.y)
         $scope.selectedId = null
-
-    $scope.board = board
 
     socket.forward(['piece:picked', 'piece:moved', 'board:synced'], $scope)
 

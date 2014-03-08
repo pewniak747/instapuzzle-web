@@ -4,6 +4,12 @@ angular.module('instapuzzleWebApp')
   .controller 'PlayCtrl', ($scope, socket) ->
 
     players = {}
+    $scope.board =
+      imageURL: ''
+      width: 0
+      height: 0
+      pieces: []
+
 
     socket.forward(['player:joined', 'player:left', 'player:synced', 'player:login', 'board:synced', 'board:finished'], $scope)
 
