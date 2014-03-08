@@ -5,7 +5,7 @@ angular.module('instapuzzleWebApp')
 
     players = {}
 
-    socket.forward(['player:joined', 'player:left', 'player:synced', 'player:login'], $scope)
+    socket.forward(['player:joined', 'player:left', 'player:synced', 'player:login', 'board:finished'], $scope)
 
     $scope.$on 'socket:player:joined', (event, data) ->
       players[data.id] =
@@ -27,11 +27,15 @@ angular.module('instapuzzleWebApp')
       $scope.currentPlayerId = data.id
       $scope.state = 'logged-in'
 
+    $scope.$on 'socket:board:finished', (event, data) ->
+      $scope.boardState = 'finished'
+
     $scope.playersCount = ->
       _.size(players)
 
     $scope.players = players
     $scope.state = 'logged-out'
+    $scope.boardState = 'not-finished'
 
     socket.emit('player:join')
     socket.emit('player:sync')

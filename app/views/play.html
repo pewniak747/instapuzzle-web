@@ -1,6 +1,13 @@
 <div ng-controller="PlayCtrl">
-  <p>{{ playersCount() }} players online</p>
-  <br />
+  <div class="play__state" ng-switch="boardState">
+    <div ng-switch-when="not-finished">
+      <p>{{ playersCount() }} players online</p>
+    </div>
+    <div ng-switch-when="finished">
+      <p>puzzle solved, good job!</p>
+      <span>new puzzle coming up in a second...</span>
+    </div>
+  </div>
   <div ng-controller="BoardCtrl" class="board__wrapper">
     <div instapuzzle-board instapuzzle-board-model="board"></div>
     <div class="board__loading" ng-show="state == 'logged-out'">
