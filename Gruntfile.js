@@ -15,6 +15,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadTasks('grunt-angular-templates');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -347,6 +349,18 @@ module.exports = function (grunt) {
         'svgmin'
       ]
     },
+    ngtemplates: {
+      app: {
+        src: '<%= yeoman.app %>/views/**.html',
+        dest: '.tmp/scripts/templates.js'
+      },
+      options: {
+        module: 'instapuzzleWebApp',
+        url: function(url) {
+          return url.replace('app/', '');
+        }
+      }
+    },
 
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
@@ -415,6 +429,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bower-install',
+    'ngtemplates',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
