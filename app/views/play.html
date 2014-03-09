@@ -2,7 +2,7 @@
   <div class="play__state" ng-switch="boardState">
     <div ng-switch-when="not-finished">
       <p>{{ playersCount() }} players online</p>
-      <span>source: <a href="{{ board.imageURL }}" target="_blank">{{ board.imageURL }}</a></span>
+      <span ng-mouseenter="showPreview()" ng-mouseleave="hidePreview()">source: <a href="{{ board.imageURL }}" target="_blank">{{ board.imageURL }}</a></span>
     </div>
     <div ng-switch-when="finished">
       <p>puzzle solved, good job!</p>
@@ -14,5 +14,6 @@
     <div class="board__loading" ng-show="state == 'logged-out'">
       <p>loading game...</p>
     </div>
+    <div ng-show="preview" class="board__preview"><img src="{{ board.imageURL }}" /></div>
   </div>
 </div>

@@ -35,6 +35,7 @@ angular.module('instapuzzleWebApp')
 
     $scope.$on 'socket:board:finished', (event, data) ->
       $scope.boardState = 'finished'
+      $scope.preview = false
 
     $scope.$on 'socket:board:synced', (event, data) ->
       if data.finished
@@ -44,6 +45,12 @@ angular.module('instapuzzleWebApp')
 
     $scope.playersCount = ->
       _.size(players)
+
+    $scope.showPreview = ->
+      $scope.preview = true
+
+    $scope.hidePreview = ->
+      $scope.preview = false
 
     $scope.players = players
     $scope.state = 'logged-out'
