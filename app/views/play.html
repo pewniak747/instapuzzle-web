@@ -1,7 +1,7 @@
 <div ng-controller="PlayCtrl">
   <div class="play__state" ng-switch="boardState">
     <div ng-switch-when="not-finished">
-      <p>{{ playersCount() }} players online</p>
+      <p>{{ playersCount() }} player{{ playersCount() != 1 ? 's' : '' }} online</p>
       <span ng-mouseenter="showPreview()" ng-mouseleave="hidePreview()">source: <a href="{{ board.imageURL }}" target="_blank">{{ board.imageURL }}</a></span>
     </div>
     <div ng-switch-when="finished">
