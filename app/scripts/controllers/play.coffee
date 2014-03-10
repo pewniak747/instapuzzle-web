@@ -47,7 +47,8 @@ angular.module('instapuzzleWebApp')
       _.size(players)
 
     $scope.showPreview = ->
-      $scope.preview = true
+      if $scope.state == 'logged-in'
+        $scope.preview = true
 
     $scope.hidePreview = ->
       $scope.preview = false
