@@ -12,7 +12,7 @@
   <div ng-controller="BoardCtrl" class="board__wrapper">
     <div instapuzzle-board instapuzzle-board-model="board"></div>
     <div class="board__loading" ng-show="state == 'logged-out'">
-      <p>loading game...</p>
+      <p><img src="/images/loader.gif" /></p>
     </div>
     <div ng-show="preview" class="board__preview"><img src="{{ board.imageURL }}" /></div>
   </div>
