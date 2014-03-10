@@ -14,6 +14,7 @@
     <div class="board__loading" ng-show="state == 'logged-out'">
       <p><img src="/images/loader.gif" /></p>
     </div>
-    <div ng-show="preview" class="board__preview"><img src="{{ board.imageURL }}" /></div>
+    <div ng-show="preview" class="board__preview"><img src="{{ board.image.url }}" /></div>
   </div>
+  <p ng-show="board.image.source" class="board__image-source">source: <a href="{{ board.image.source }}" target="_blank">{{ board.image.source }}</a></p>
 </div>

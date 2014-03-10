@@ -26,7 +26,7 @@ angular.module('instapuzzleWebApp')
       element.css
         width: "#{width}%"
         height: "#{height}%"
-        'background-image': "url('#{board.imageURL}')"
+        'background-image': "url('#{board.image.url}')"
         'background-position': "#{backgroundPosX}% #{backgroundPosY}%"
         'background-size': "#{board.width * 100}% #{board.height * 100}%"
 

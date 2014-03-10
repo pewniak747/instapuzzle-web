@@ -5,7 +5,7 @@ angular.module('instapuzzleWebApp')
 
     players = {}
     $scope.board =
-      imageURL: ''
+      image: {}
       width: 0
       height: 0
       pieces: []

@@ -20,7 +20,7 @@ angular.module('instapuzzleWebApp')
       piece?.holder = holder
 
     $scope.$on 'socket:board:synced', (event, args) ->
-      $scope.board.imageURL = args.imageURL
+      $scope.board.image = args.image
       $scope.board.width = args.width
       $scope.board.height = args.height
       $scope.board.pieces = _.map args.pieces, (piece, index) ->

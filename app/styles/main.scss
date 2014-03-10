@@ -144,6 +144,19 @@ body {
   }
 }
 
+.board__image-source {
+  height: 0;
+  font-size: 0.7em;
+  text-align: right;
+  color: #aaa;
+  position: relative;
+  top: 16px;
+  right: 24px;
+  a {
+    color: #aaa;
+  }
+}
+
 .play__state {
   margin-bottom: 30px;
   span {
