@@ -51,6 +51,13 @@ angular.module('instapuzzleWebApp')
         showBadge = holder? && holder.id != currentId
         element.find('.js-holder').toggle(showBadge).css('border-right-color', scope.stringToColor(holder?.name || ""))
 
+      scope.$watch 'piece.correct', (value) ->
+        if value == true
+          element.animate left: '-10px', 100, ->
+            element.animate left: '10px', 100, ->
+              element.animate left: '0px', 100, ->
+                scope.piece.correct = false
+
       scope.stringToColor = (str) ->
         i = 0
         hash = 0

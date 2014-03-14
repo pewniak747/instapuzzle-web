@@ -10,10 +10,13 @@ angular.module('instapuzzleWebApp')
       else
         socket.emit('piece:move', id: $scope.selectedId, x: args.x, y: args.y)
 
-    socket.forward(['piece:picked', 'piece:moved', 'board:synced'], $scope)
+    socket.forward(['piece:picked', 'piece:moved', 'piece:correct', 'board:synced'], $scope)
+
+    findPieceById = (id) ->
+      _.find $scope.board.pieces, (piece) -> piece.id == id
 
     $scope.$on 'socket:piece:picked', (event, args) ->
-      piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
+      piece = findPieceById(args.piece_id)
       holder = $scope.players[args.player_id] || {}
       piece?.holder = holder
       $scope.selectedId = piece?.id
@@ -27,11 +30,15 @@ angular.module('instapuzzleWebApp')
         piece
 
     $scope.$on 'socket:piece:moved', (event, args) ->
-      piece = _.find $scope.board.pieces, (piece) -> piece.id == args.piece_id
+      piece = findPieceById(args.piece_id)
       if piece?
         piece.x = args.position.x
         piece.y = args.position.y
         piece.holder = null
         $scope.selectedId = null
+
+    $scope.$on 'socket:piece:correct', (event, args) ->
+      piece = findPieceById(args.piece_id)
+      piece?.correct = true
 
     socket.emit('board:sync')
