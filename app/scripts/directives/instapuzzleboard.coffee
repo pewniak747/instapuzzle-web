@@ -53,9 +53,9 @@ angular.module('instapuzzleWebApp')
 
       scope.$watch 'piece.correct', (value) ->
         if value == true
-          element.animate left: '-10px', 100, ->
-            element.animate left: '10px', 100, ->
-              element.animate left: '0px', 100, ->
+          element.animate left: '-=10', 100, ->
+            element.animate left: '+=20px', 100, ->
+              element.animate left: '-=10px', 100, ->
                 scope.piece.correct = false
 
       scope.stringToColor = (str) ->
