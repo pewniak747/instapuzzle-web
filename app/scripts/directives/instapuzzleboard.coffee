@@ -53,10 +53,10 @@ angular.module('instapuzzleWebApp')
 
       scope.$watch 'piece.correct', (value) ->
         if value == true
-          element.animate left: '-=10', 100, ->
-            element.animate left: '+=20px', 100, ->
-              element.animate left: '-=10px', 100, ->
-                scope.piece.correct = false
+          element.addClass('animated shake')
+          element.one 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', ->
+            scope.piece.correct = false
+            element.removeClass('animated shake')
 
       scope.stringToColor = (str) ->
         i = 0
