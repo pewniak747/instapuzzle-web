@@ -47,7 +47,7 @@ body {
 /* Main marketing message and sign up button */
 .jumbotron {
     text-align: center;
-    border-bottom: 1px solid #e5e5e5;
+    background-color: transparent;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -61,10 +61,10 @@ body {
     .footer {
         padding-left: 0;
         padding-right: 0;
-    }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
+        &.is-active {
+          @include transition(all, 3.0s);
+          opacity: 0.05;
+        }
     }
     /* Remove the bottom border on the jumbotron for visual effect */
     .jumbotron {

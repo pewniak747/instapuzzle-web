@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" ng-class="{'is-active': active}" ng-mouseover="active = false">
   <ul class="nav nav-pills pull-right">
     <li ng-class="{active: isCurrentTab('play')}"><a href="" ng-click="switchTab('play')">Play</a></li>
     <li ng-class="{active: isCurrentTab('about')}"><a href="" ng-click="switchTab('about')">About</a></li>
@@ -8,6 +8,6 @@
 
 <div class="jumbotron" ng-include="'views/' + currentTab + '.html'"></div>
 
-<div class="footer">
+<div class="footer" ng-class="{'is-active': active}">
   <p>&copy; 2014 by <a href="https://github.com/pewniak747" target="blank">Tomasz Pewinski</a></p>
 </div>

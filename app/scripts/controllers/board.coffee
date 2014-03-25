@@ -9,6 +9,7 @@ angular.module('instapuzzleWebApp')
         socket.emit('piece:pickup', args.id)
       else
         socket.emit('piece:move', id: $scope.selectedId, x: args.x, y: args.y)
+        $scope.$emit('piece:moved')
 
     socket.forward(['piece:picked', 'piece:moved', 'piece:correct', 'board:synced'], $scope)
 

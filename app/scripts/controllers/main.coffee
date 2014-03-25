@@ -9,3 +9,11 @@ angular.module('instapuzzleWebApp')
 
     $scope.isCurrentTab = (tab) ->
       $scope.currentTab == tab
+
+    $scope.$on 'piece:moved', ->
+      $scope.active = true
+
+    $scope.$watch 'currentTab', (value) ->
+      $scope.active = false
+
+    $scope.active = false
